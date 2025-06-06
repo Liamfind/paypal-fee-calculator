@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayPal Fee Calculator | PayPal费用计算器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>PayPal Fee Calculator | PayPal费用计算器</h1>
+        <div class="calculator">
+            <div class="mode-selector">
+                <button class="mode-btn active" data-mode="forward">正向计算 Forward Calculation</button>
+                <button class="mode-btn" data-mode="reverse">反向计算 Reverse Calculation</button>
+            </div>
+            
+            <!-- 正向计算模式 -->
+            <div class="calculation-mode" id="forward-mode">
+                <div class="input-group">
+                    <label for="netAmount">网红固定费用 Influencer Fixed Rate ($):</label>
+                    <input type="number" id="netAmount" placeholder="输入金额 Enter amount" step="0.01" min="0">
+                </div>
+                <div class="input-group">
+                    <label for="fixedFee">固定手续费 Fixed Fee ($):</label>
+                    <input type="number" id="fixedFee" value="0.30" step="0.01" min="0">
+                </div>
+                <div class="input-group">
+                    <label for="percentageFee">百分比手续费 Percentage Fee (%):</label>
+                    <input type="number" id="percentageFee" value="2.9" step="0.01" min="0">
+                </div>
+            </div>
+
+            <!-- 反向计算模式 -->
+            <div class="calculation-mode" id="reverse-mode" style="display: none;">
+                <div class="input-group">
+                    <label for="totalBudget">总预算 Total Budget ($):</label>
+                    <input type="number" id="totalBudget" placeholder="输入总预算 Enter total budget" step="0.01" min="0">
+                </div>
+                <div class="input-group">
+                    <label for="fixedFeeReverse">固定手续费 Fixed Fee ($):</label>
+                    <input type="number" id="fixedFeeReverse" value="0.30" step="0.01" min="0">
+                </div>
+                <div class="input-group">
+                    <label for="percentageFeeReverse">百分比手续费 Percentage Fee (%):</label>
+                    <input type="number" id="percentageFeeReverse" value="2.9" step="0.01" min="0">
+                </div>
+            </div>
+
+            <button onclick="calculateFees()">计算 Calculate</button>
+            
+            <div class="results">
+                <div class="result-item">
+                    <span>需要支付的总金额 Gross Amount:</span>
+                    <span id="grossAmount">$0.00</span>
+                </div>
+                <div class="result-item">
+                    <span>PayPal手续费 PayPal Fee:</span>
+                    <span id="paypalFee">$0.00</span>
+                </div>
+                <div class="result-item">
+                    <span>网红实际收到金额 Net Amount:</span>
+                    <span id="netAmountResult">$0.00</span>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h3>计算说明 Calculation Notes:</h3>
+                <ul>
+                    <li>正向计算 Forward: 输入网红固定费用,计算需要支付的总金额</li>
+                    <li>反向计算 Reverse: 输入总预算,计算网红实际能收到的金额</li>
+                    <li>默认手续费率 Default Fee Rate: 固定费$0.30 + 2.9%</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
