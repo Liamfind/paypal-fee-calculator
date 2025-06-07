@@ -10,16 +10,17 @@
     <div class="container">
         <h1>PayPal Fee Calculator | PayPal费用计算器</h1>
         <div class="calculator">
+            <div class="fee-bearer-label" style="margin-bottom: 8px; font-weight: 600; color: #003087; font-size: 1.08rem;">手续费承担方 Fee Bearer</div>
             <div class="mode-selector">
-                <button class="mode-btn active" data-mode="forward">正向计算 Forward Calculation</button>
-                <button class="mode-btn" data-mode="reverse">反向计算 Reverse Calculation</button>
+                <button class="mode-btn active" data-mode="company">公司承担 Company Pays Fee</button>
+                <button class="mode-btn" data-mode="influencer">达人承担 Influencer Pays Fee</button>
             </div>
             
-            <!-- 正向计算模式 -->
-            <div class="calculation-mode" id="forward-mode">
+            <!-- 公司承担手续费 -->
+            <div class="calculation-mode" id="company-mode">
                 <div class="input-group">
-                    <label for="netAmount">网红固定费用 Influencer Fixed Rate ($):</label>
-                    <input type="number" id="netAmount" placeholder="输入金额 Enter amount" step="0.01" min="0">
+                    <label for="netAmount">达人实际收到金额 Influencer Net Amount ($):</label>
+                    <input type="number" id="netAmount" placeholder="输入达人实际收入 Enter influencer net amount" step="0.01" min="0">
                 </div>
                 <div class="input-group">
                     <label for="fixedFee">固定手续费 Fixed Fee ($):</label>
@@ -27,23 +28,23 @@
                 </div>
                 <div class="input-group">
                     <label for="percentageFee">百分比手续费 Percentage Fee (%):</label>
-                    <input type="number" id="percentageFee" value="2.9" step="0.01" min="0">
+                    <input type="number" id="percentageFee" value="4.4" step="0.01" min="0">
                 </div>
             </div>
 
-            <!-- 反向计算模式 -->
-            <div class="calculation-mode" id="reverse-mode" style="display: none;">
+            <!-- 达人承担手续费 -->
+            <div class="calculation-mode" id="influencer-mode" style="display: none;">
                 <div class="input-group">
-                    <label for="totalBudget">总预算 Total Budget ($):</label>
-                    <input type="number" id="totalBudget" placeholder="输入总预算 Enter total budget" step="0.01" min="0">
+                    <label for="totalBudget">公司支付总金额 Company Gross Amount ($):</label>
+                    <input type="number" id="totalBudget" placeholder="输入公司支付总额 Enter company gross amount" step="0.01" min="0">
                 </div>
                 <div class="input-group">
-                    <label for="fixedFeeReverse">固定手续费 Fixed Fee ($):</label>
-                    <input type="number" id="fixedFeeReverse" value="0.30" step="0.01" min="0">
+                    <label for="fixedFeeInfluencer">固定手续费 Fixed Fee ($):</label>
+                    <input type="number" id="fixedFeeInfluencer" value="0.30" step="0.01" min="0">
                 </div>
                 <div class="input-group">
-                    <label for="percentageFeeReverse">百分比手续费 Percentage Fee (%):</label>
-                    <input type="number" id="percentageFeeReverse" value="2.9" step="0.01" min="0">
+                    <label for="percentageFeeInfluencer">百分比手续费 Percentage Fee (%):</label>
+                    <input type="number" id="percentageFeeInfluencer" value="4.4" step="0.01" min="0">
                 </div>
             </div>
 
@@ -51,7 +52,7 @@
             
             <div class="results">
                 <div class="result-item">
-                    <span>需要支付的总金额 Gross Amount:</span>
+                    <span id="grossLabel">公司需支付总金额 Company Gross Amount:</span>
                     <span id="grossAmount">$0.00</span>
                 </div>
                 <div class="result-item">
@@ -59,7 +60,7 @@
                     <span id="paypalFee">$0.00</span>
                 </div>
                 <div class="result-item">
-                    <span>网红实际收到金额 Net Amount:</span>
+                    <span id="netLabel">达人实际收到金额 Influencer Net Amount:</span>
                     <span id="netAmountResult">$0.00</span>
                 </div>
             </div>
@@ -67,9 +68,9 @@
             <div class="info-box">
                 <h3>计算说明 Calculation Notes:</h3>
                 <ul>
-                    <li>正向计算 Forward: 输入网红固定费用,计算需要支付的总金额</li>
-                    <li>反向计算 Reverse: 输入总预算,计算网红实际能收到的金额</li>
-                    <li>默认手续费率 Default Fee Rate: 固定费$0.30 + 2.9%</li>
+                    <li>公司承担 Company Pays Fee: 输入达人实际收到金额，计算公司需支付总金额</li>
+                    <li>达人承担 Influencer Pays Fee: 输入公司支付总金额，计算达人实际收到金额</li>
+                    <li>默认手续费率 Default Fee Rate: 固定费$0.30 + 4.4%</li>
                 </ul>
             </div>
         </div>
